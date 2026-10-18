@@ -1,8 +1,8 @@
 services:
   mkdocs:
     build: .
-    image: mkdocs-material-boilerplate
-    container_name: mkdocs_material_boilerplate
+    image: open-single-pair-ethernet
+    container_name: open_single_pair_ethernet
     ports:
       - "8000:8000"
     volumes:

@@ -1,12 +1,12 @@
-image:
-  name: ghcr.io/peaceiris/mkdocs-material:v4.0.1
+image: python:3.11-slim-bookworm
 
 pages:
   script:
+    - pip install --no-cache-dir -r requirements.txt
     - mkdocs build --config-file ./mkdocs-sample.yml
     - mv site public
   artifacts:
     paths:
       - public
-  only:
-    - main
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"

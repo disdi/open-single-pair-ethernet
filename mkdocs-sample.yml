@@ -1,19 +1,22 @@
 # Project information
-site_name: "MkDocs Material Boilerplate"
-site_description: "MkDocs Material Boilerplate (Starter Kit) - Deploy documentation to hosting platforms (Netlify, GitHub Pages, GitLab Pages, and AWS Amplify Console) with Docker, pipenv, and GitHub Actions."
-site_author: "peaceiris"
-site_url: "https://disdi.github.io/static-page-template/"
+site_name: "Open Single Pair Ethernet"
+site_description: "An open 10BASE-T1S (IEEE 802.3cg) MAC and digital PHY, from an external PHY through an FPGA to an open-PDK tape-out."
+site_author: "Saket Sinha"
+site_url: "https://saketsinha.de/open-single-pair-ethernet/"
 
 # Copyright
-copyright: "&copy; 2021 peaceiris"
+copyright: "&copy; 2026 Saket Sinha"
 
 # Repository
-repo_name: "GitHub"
-repo_url: "https://github.com/peaceiris/mkdocs-material-boilerplate"
-edit_uri: "edit/main/docs_sample/"
+repo_name: "open-single-pair-ethernet"
+repo_url: "https://github.com/disdi/open-single-pair-ethernet"
+edit_uri: "edit/master/docs_sample/"
 
 # Configuration
 docs_dir: "docs_sample"
+nav:
+  - Home: index.md
+  - Roadmap: roadmap.md
 theme:
   name: "material"
   custom_dir: "overrides"
@@ -48,7 +51,5 @@ extra_css:
   - "assets/css/custom.css"
 extra:
   social:
-    - icon: "fontawesome/brands/github-alt"
-      link: "https://github.com/peaceiris"
-    - icon: "fontawesome/brands/twitter"
-      link: "https://twitter.com/piris314en"
+    - icon: "fontawesome/brands/github"
+      link: "https://github.com/disdi/open-single-pair-ethernet"

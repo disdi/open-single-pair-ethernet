@@ -1,6 +1,6 @@
 FROM python:3.11-slim-bookworm
 
-LABEL maintainer="peaceiris"
+LABEL maintainer="Saket Sinha"
 
 WORKDIR /docs
 
