@@ -1,66 +1,22 @@
-<h1 align="center">
-<img src="https://raw.githubusercontent.com/peaceiris/mkdocs-material-boilerplate/main/docs_sample/images/graduate-cap.png" alt="MkDocs icon" width="170">
-<br>MkDocs Material<br>Boilerplate - Starter Kit
-</h1>
 
-![Eyecatch image of MkDocs Material Boilerplate (Starter Kit)](https://raw.githubusercontent.com/peaceiris/mkdocs-material-boilerplate/main/docs_sample/images/material.png)
-
-
-
-[![license](https://img.shields.io/github/license/peaceiris/mkdocs-material-boilerplate.svg)](https://github.com/peaceiris/mkdocs-material-boilerplate/blob/main/LICENSE)
-[![release](https://img.shields.io/github/release/peaceiris/mkdocs-material-boilerplate.svg)](https://github.com/peaceiris/mkdocs-material-boilerplate/releases/latest)
-[![GitHub release date](https://img.shields.io/github/release-date/peaceiris/mkdocs-material-boilerplate.svg)](https://github.com/peaceiris/mkdocs-material-boilerplate/releases)
-[![GitHub Actions status](https://github.com/peaceiris/mkdocs-material-boilerplate/workflows/github%20pages/badge.svg)](https://github.com/peaceiris/mkdocs-material-boilerplate/actions)
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/9c95ccf4-5c1e-447b-8025-dd0b6f8764a5/deploy-status)](https://app.netlify.com/sites/mkdocs-material/deploys)
-
-<!-- https://shields.io/ -->
-
-
+# Open Single Pair Ethernet
 
 ## Details
 
-Read more 👉 [Documentation - MkDocs Material Boilerplate]
+Single Pair Ethernet (IEEE 802.3cg 10BASE-T1S) provides a simple, deterministic multidrop bus for distributed embedded systems. It carries data (and optionally power) over a single twisted pair, making it well-suited for industrial, automotive, and edge sensor networks.
 
-[Documentation - MkDocs Material Boilerplate]: https://peaceiris.github.io/mkdocs-material-boilerplate/
+The plan is to start with a reconfigurable 10BASE-T1S MAC driving an external PHY, move the digital PHY into the FPGA, and finally tape out the digital block on an open PDK.
 
+## Roadmap
 
+### Step 1 
 
-## Quick start
+External PHY (now). Half-duplex MAC + MDIO + RMII to a LAN8670 on an Eclypse Z7 with SYZYGY breakouts. Validates PLCA, mixing-segment behaviour, and a thin application wrapper for smart-sensor logic. Uses open tooling (e.g. liteeth).
 
-```sh
-git clone https://github.com/peaceiris/mkdocs-material-boilerplate.git
-cd mkdocs-material-boilerplate
-pipenv sync --dev
-pipenv shell
-inv serve --config-file mkdocs-sample.yml
-```
+### Step 2
 
+DigPHY- Same MAC and wrapper. New RTL implements Clause 147 PCS, Clause 148 PLCA, and the OPEN Alliance TC14 3-pin interface. The external part shrinks to any TC14-compliant PMD (e.g. TJA1410). Vendor-agnostic digital side.
 
+### Step 3
 
-## Links
-
-- [mkdocs/mkdocs: Project documentation with Markdown - GitHub]
-- [squidfunk/mkdocs-material: A Material Design theme for MkDocs]
-
-[mkdocs/mkdocs: Project documentation with Markdown - GitHub]: https://github.com/mkdocs/mkdocs/
-[squidfunk/mkdocs-material: A Material Design theme for MkDocs]: https://github.com/squidfunk/mkdocs-material
-
-
-
-## License
-
-- [MIT License]
-- [The graduate cap icon] made by [Freepik] from [www.flaticon.com] is licensed by [CC 3.0 BY]
-
-[MIT License]: https://github.com/peaceiris/mkdocs-material-boilerplate/blob/main/LICENSE
-[The graduate cap icon]: https://www.flaticon.com/free-icon/graduate-cap_62627
-[Freepik]: https://www.freepik.com/
-[www.flaticon.com]: https://www.flaticon.com/
-[CC 3.0 BY]: http://creativecommons.org/licenses/by/3.0/
-
-
-
-## About Maintainer
-
-- [peaceiris Homepage](https://peaceiris.com/)
+Open-PDK tape-out. Target a compact digPHY + MAC + smart-sensor block for an affordable shuttle such as wafer.space (GF180MCU open PDK, slots from ~5 mm² / $2 k for 1000 dies upward). Open PDKs (SkyWater, IHP, GlobalFoundries) and open tooling (LibreLane, open DRC, etc.) keep the entire flow inspectable.
