@@ -9,6 +9,8 @@ Single Pair Ethernet (IEEE 802.3cg 10BASE-T1S) provides a simple, deterministic 
 
 The plan is to start with a reconfigurable 10BASE-T1S MAC driving an external PHY and finally move the digital PHY into the FPGA.
 
+---
+
 ## Roadmap
 
 ### Step 1 : MAC with External PHY (10BaseT1S PHY from Microchip LAN8670)
@@ -38,3 +40,23 @@ Implement DigPHY using same MAC but with new RTL implementing Clause 147 PCS, Cl
 └─────────────────────────────────────────┘
 
 ```
+---
+
+### Advantages
+
+- To make SPE Ethernet over twisted pair cable accessible to FPGAs for deterministic workloads.
+
+- Step 2 adds small, cheap, analog transceiver replacing expensive Ethernet PHY as shown below :
+
+```
+Step 1 (external PHY)          Step 2 (digPHY)
+---------------------          ----------------
+FPGA: MAC + MDIO               FPGA: MAC + PCS + PLCA + TC14 adapter
+       │                              │
+       │ RMII                         │ 3-pin TC14
+       ▼                              ▼
+LAN8670 (full PHY)             TC14 PMD only (analog)
+       │                              │
+       └──── single pair ─────────────┘
+```
+---
