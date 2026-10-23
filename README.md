@@ -13,11 +13,49 @@ The plan is to start with a reconfigurable 10BASE-T1S MAC driving an external PH
 
 ## Roadmap
 
+### Step 0 :
+
+Create a small, open-hardware PMOD that exposes a Microchip LAN8670 (10BASE-T1S PHY) over a standard 12-pin PMOD header.
+
+This module lets any FPGA or MCU board with a PMOD (or a simple adapter) drive a 10BASE-T1S link via RMII + MDIO. It serves as the practical hardware foundation before the FPGA-based Step 1.
+
+```
+
+PMOD header
+   │
+   ├── RMII (TXD0/1, TXEN, RXD0/1, CRS_DV, CLK50, RST_N)
+   ├── MDIO / MDC
+   └── 3.3 V / GND
+        │
+        ▼
+   LAN8670 (RMII mode)
+        │
+        ▼
+   Bus Interface Network interfacing the PHY IC to the MDI connector in 10BASE-T1S
+        │
+        ▼
+   2-pin screw terminal (or SPE connector)
+
+```
+
+
 ### Step 1 : MAC with External PHY (10BaseT1S PHY from Microchip LAN8670)
 
 ![Step 1 roadmap](images/step1.png)
 
-Half-duplex MAC + MDIO + RMII to a LAN8670 on an Eclypse Z7 with SYZYGY breakouts. Validates PLCA and mixing-segment behaviour using [LiteEth](https://github.com/enjoy-digital/liteeth).
+Using [LiteEth](https://github.com/enjoy-digital/liteeth) implement half-duplex MAC which already supports MDIO and RMII for LAN8670 PHY.
+
+```
+
+FPGA (any LiteX board)
+  ├── LiteEthPHYRMII
+  ├── LiteEthPHYMDIO
+  └── Small software routine  ← to writes PLCA registers
+         │
+         └── RMII + MDIO wires → connect to LAN8670 PMOD
+
+```
+
 
 ### Step 2 : digital PHY (PCS + PLCA) inside FPGA
 
