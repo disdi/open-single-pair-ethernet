@@ -11,15 +11,18 @@ The plan is to start with a reconfigurable 10BASE-T1S MAC driving an external PH
 
 ## Roadmap
 
-![Open Single Pair Ethernet roadmap](images/spe_im_roadmap.jpg)
+### Step 1 : MAC with External PHY (10BaseT1S PHY from Microchip LAN8670)
 
-### Step 1 
+![Step 1 roadmap](images/step1.png)
 
-MAC with External PHY (10BaseT1S PHY from Microchip LAN8670) : Half-duplex MAC + MDIO + RMII to a LAN8670 on an Eclypse Z7 with SYZYGY breakouts. Validates PLCA, mixing-segment behaviour, and a thin application wrapper for smart-sensor logic. Uses open tooling (e.g. liteeth).
+Half-duplex MAC + MDIO + RMII to a LAN8670 on an Eclypse Z7 with SYZYGY breakouts. Validates PLCA and mixing-segment behaviour using [LiteEth](https://github.com/enjoy-digital/liteeth).
 
-### Step 2
+### Step 2 : digital PHY (PCS + PLCA) inside FPGA
 
-DigPHY : Same MAC. New RTL implements Clause 147 PCS, Clause 148 PLCA, and the [OPEN Alliance TC14 3-pin interface](https://opensig.org/wp-content/uploads/2024/01/OPEN_Alliance_10BASE-T1S_PMD_Transceiver_Interface_1p5_Final.pdf). The external part shrinks to any TC14-compliant PMD (e.g. TJA1410). Vendor-agnostic digital side.
+![Step 2 roadmap](images/step2.png)
+
+
+DigPHY : Same MAC. New RTL implements Clause 147 PCS, Clause 148 PLCA, and the [OPEN Alliance TC14 3-pin interface](https://opensig.org/wp-content/uploads/2024/01/OPEN_Alliance_10BASE-T1S_PMD_Transceiver_Interface_1p5_Final.pdf). The external part shrinks to a minimal external analog PMD over the 3-pin TC14 interface(e.g. [TJA1410](https://www.nxp.com/products/TJA1410)) which is  Vendor-agnostic.
 
 ```
 ┌─────────────────────────────────────────┐
