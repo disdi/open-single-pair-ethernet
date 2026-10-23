@@ -22,7 +22,7 @@ Half-duplex MAC + MDIO + RMII to a LAN8670 on an Eclypse Z7 with SYZYGY breakout
 ![Step 2 roadmap](images/step2.png)
 
 
-DigPHY : Same MAC. New RTL implements Clause 147 PCS, Clause 148 PLCA, and the [OPEN Alliance TC14 3-pin interface](https://opensig.org/wp-content/uploads/2024/01/OPEN_Alliance_10BASE-T1S_PMD_Transceiver_Interface_1p5_Final.pdf). The external part shrinks to a minimal external analog PMD over the 3-pin TC14 interface(e.g. [TJA1410](https://www.nxp.com/products/TJA1410)) which is  Vendor-agnostic.
+Implement DigPHY using same MAC but with new RTL implementing Clause 147 PCS, Clause 148 PLCA, and interfacing with the [OPEN Alliance TC14 3-pin interface](https://opensig.org/wp-content/uploads/2024/01/OPEN_Alliance_10BASE-T1S_PMD_Transceiver_Interface_1p5_Final.pdf). The external part shrinks to a minimal external analog PMD over the 3-pin TC14 interface(e.g. [TJA1410](https://www.nxp.com/products/TJA1410)) which is  Vendor-agnostic.
 
 ```
 ┌─────────────────────────────────────────┐
