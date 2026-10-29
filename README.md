@@ -17,6 +17,8 @@ The plan is to start with a reconfigurable 10BASE-T1S MAC driving an external PH
 
 Create a small, open-hardware PMOD that exposes a Microchip LAN8670 (10BASE-T1S PHY) over a standard 12-pin PMOD header.
 
+KiCad 9 sources, revision 0.2, are in [disdi/10BaseT1S-PMOD](https://github.com/disdi/10BaseT1S-PMOD) under the MIT license.
+
 This module lets any FPGA or MCU board with a PMOD (or a simple adapter) drive a 10BASE-T1S link via RMII + MDIO. It serves as the practical hardware foundation before the FPGA-based Step 1.
 
 ```
